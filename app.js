@@ -4,6 +4,7 @@ const app = express();
 const request=require('request');
 const https=require('https');
 const port = process.env.PORT||3000;
+const apikey=require('./api');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -34,7 +35,7 @@ app.post('/', (req, res) => {
     const url="https://us21.api.mailchimp.com/3.0/lists/38372d5e78";
     const options={
         method:"POST",
-        auth:"karthik:213082fd8b0f5a60ee1f588adc3421e7-us21"
+        auth:"karthik:"+apikey.getapi()
     };
 
     const request=https.request(url,options,(response)=>{
